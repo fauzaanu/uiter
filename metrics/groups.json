@@ -1,0 +1,51 @@
+{
+  "version": 2,
+  "total_weight": 100,
+  "metrics": [
+    {
+      "id": "visual-clarity",
+      "name": "Visual Clarity",
+      "file": "visual-clarity.md",
+      "weight": 23,
+      "description": "Measures whether text is legible and whether contrast, type, spacing, alignment, color, and density make the screen's structure and priorities clear at a glance.",
+      "weight_rationale": "Equals the sum of its ten members' current weights (23), kept unchanged because contrast and hierarchy still dominate the group and no member overlaps with another group.",
+      "members": ["contrast", "visual-hierarchy", "text-readability", "typography", "white-space", "alignment", "spacing-consistency", "grid-layout", "color-palette", "data-density"]
+    },
+    {
+      "id": "interaction-feedback",
+      "name": "Interaction and Feedback",
+      "file": "interaction-feedback.md",
+      "weight": 29,
+      "description": "Measures whether users can tell what is operable, see what the system is doing, avoid mistakes, and recover or back out when something goes wrong.",
+      "weight_rationale": "Equals the sum of its nine members' current weights (29), the largest group because it holds both error metrics (5 each) and the action-to-outcome loop that decides task success.",
+      "members": ["error-prevention", "error-recovery", "affordances", "feedback-system-status", "form-design", "user-control-freedom", "perceived-performance", "loading-empty-states", "motion"]
+    },
+    {
+      "id": "accessibility",
+      "name": "Accessibility",
+      "file": "accessibility.md",
+      "weight": 16,
+      "description": "Measures whether keyboard, screen reader, and imprecise-pointer users can reach, identify, and operate every control.",
+      "weight_rationale": "Equals the sum of its four members' current weights (16), kept as a separate group so that blocking access failures are not averaged away inside a larger one.",
+      "members": ["accessibility-keyboard", "screen-reader-semantics", "focus-visibility", "touch-target-size"]
+    },
+    {
+      "id": "content-cognition",
+      "name": "Content and Cognitive Effort",
+      "file": "content-cognition.md",
+      "weight": 20,
+      "description": "Measures whether users can find what they need, understand labels, icons, and messages, and finish tasks without extra steps or reliance on memory.",
+      "weight_rationale": "Equals the sum of its eight members' current weights (20), led by navigation and information architecture at 4 each.",
+      "members": ["navigation-clarity", "information-architecture", "copy-microcopy", "cognitive-load", "interaction-cost", "recognition-over-recall", "progressive-disclosure", "iconography"]
+    },
+    {
+      "id": "consistency-context",
+      "name": "Consistency and Context Fit",
+      "file": "consistency-context.md",
+      "weight": 12,
+      "description": "Measures whether the screen behaves like one coherent, trustworthy product that matches its platform and holds up across widths, themes, and languages.",
+      "weight_rationale": "Equals the sum of its six members' current weights (12), the smallest group because most of its checks concern conditions beyond the single screen being scored.",
+      "members": ["consistency", "responsiveness", "platform-conventions", "trust-credibility", "theme-parity", "localization-readiness"]
+    }
+  ]
+}
