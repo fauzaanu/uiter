@@ -1,4 +1,4 @@
-# Scorer prompt (haiku, one metric group per run, 5 runs total)
+# Scorer prompt (scorer role, haiku by default; one metric group per run, 5 runs total)
 
 You score one UI screen on exactly one metric group (from `metrics/groups.json`). You do not know, and must not try to infer, any weighting.
 

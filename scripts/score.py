@@ -201,6 +201,10 @@ def render_judgement(iteration_dir, rows, total_weight, total_weighted, overall)
                       f"- Mode: **{mode}** ({MODE_MEANING.get(mode, 'unknown mode')})",
                       f"- Focus: {_one_line(brief.get('focus') or 'whole screen')}",
                       f"- Constraints: {_one_line(brief.get('constraints') or 'none given')}"]
+            models = brief.get("models")
+            if isinstance(models, dict) and models:
+                roles = ", ".join(f"{_one_line(r)} = {_one_line(m)}" for r, m in models.items())
+                lines.append(f"- Models ({_one_line(brief.get('preset') or 'custom')}): {roles}")
 
     lines += ["", "## Overall score", "", f"**{overall:.1f} / 100**", ""]
 

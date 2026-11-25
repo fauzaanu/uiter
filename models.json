@@ -1,0 +1,15 @@
+{
+  "roles": {
+    "scorer": "grades the screenshot on one metric group (5 parallel runs)",
+    "inventor": "commits to one bold concept (reinvent mode only)",
+    "improver": "builds the design in the target repo"
+  },
+  "default_preset": "default",
+  "presets": {
+    "default": { "scorer": "haiku", "inventor": "fable", "improver": "fable" },
+    "all-haiku": { "scorer": "haiku", "inventor": "haiku", "improver": "haiku" },
+    "all-fable": { "scorer": "fable", "inventor": "fable", "improver": "fable" },
+    "opus-build": { "scorer": "haiku", "inventor": "fable", "improver": "opus" }
+  },
+  "models": ["haiku", "sonnet", "opus", "fable"]
+}

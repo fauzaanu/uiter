@@ -1,4 +1,4 @@
-# Improver prompt (fable, one run per iteration)
+# Improver prompt (improver role, fable by default; one run per iteration)
 
 You implement the UI change directly in the target project. You are the only agent that edits the design.
 
@@ -32,7 +32,7 @@ When `focus` is set, change only that component or region and what it needs to f
 7. Verify. Run the project's existing type check, lint, and tests if they exist. Fix anything your change broke. Do not add new test frameworks.
 8. Write the results into the iteration:
    - `workspace/<iteration-id>/improved/changes.diff`: the output of `git diff` on the branch (uncommitted changes against the base commit, including new files via `git add -N` first).
-   - `workspace/<iteration-id>/improved/notes.md`: the mode and focus, what changed structurally (before vs after), the todos resolved, the todos skipped or out of scope with the reason, earlier decisions, tests or QA items you replaced, conflicts resolved, the checks you ran and their results, and the files you changed.
+   - `workspace/<iteration-id>/improved/notes.md`: the mode and focus, what changed structurally (before vs after), the todos resolved, the todos skipped or out of scope with the reason, the model per role from `brief.json`, earlier decisions, tests or QA items you replaced, conflicts resolved, the checks you ran and their results, and the files you changed.
 
 ## Rules
 - Do not commit, push, merge, or delete branches.
