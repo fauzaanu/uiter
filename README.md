@@ -7,14 +7,14 @@ Most AI UI reviews end with "raise the contrast, add 8px of padding". That is be
 ## How it works
 
 ```
-screenshot ──► 5 haiku scorers (parallel) ──► score.py ──► fable: 3 concepts ──► fable: build ──► you review
-               one per metric group          weighted      divergent models     on a branch,
-               score + todos each            judgement     boldest viable wins  uncommitted
+screenshot ──► 5 haiku scorers (parallel) ──► score.py ──► fable: 1 concept  ──► fable: build ──► you review
+               one per metric group          weighted      one bold direction   on a branch,
+               score + todos each            judgement     no alternatives      uncommitted
 ```
 
 1. **Score (haiku × 5, in parallel).** Each scorer grades the screenshot on one metric group: visual clarity, interaction and feedback, accessibility, content and cognitive effort, consistency and context fit. Together the groups cover 37 sub-metrics, each with its own method and rubric in `metrics/`. Scorers never see the weights, which keeps them from gaming the total.
 2. **Judge (`scripts/score.py`).** Combines the five scores using the weights in `metrics/groups.json` and writes `judgement.md`, with an overall score and every todo.
-3. **Invent (fable).** Works out what the person using the screen is trying to get done, lists what the current design takes for granted without needing to, and writes three concepts that each work differently: a table vs a timeline, a form vs a step-by-step flow, filters vs a command bar. "The same screen, cleaner" is not allowed. It picks the most ambitious concept that keeps every feature reachable.
+3. **Invent (fable).** Works out what the person using the screen is trying to get done, lists what the current design takes for granted without needing to, and commits to **one** bold concept: the most ambitious idea that keeps every feature reachable and fits the stack. No alternatives and no picking between options: splitting effort across several ideas makes each one weaker. "The same screen, cleaner" is not allowed.
 4. **Build (fable).** Implements that concept in your real project on a `uiter/<iteration-id>` branch, runs your type check, lint and tests, and leaves everything uncommitted with a diff and notes.
 5. **Review (you).** Keep it, throw it away, or steer with a follow-up.
 
@@ -22,13 +22,13 @@ screenshot ──► 5 haiku scorers (parallel) ──► score.py ──► fab
 
 | Mode | When | What you get |
 | --- | --- | --- |
-| **reinvent** (default) | Always, unless you ask for less | A new way of using the screen or component, from the boldest workable of three concepts |
+| **reinvent** (default) | Always, unless you ask for less | A new way of using the screen or component, from one bold concept |
 | **restructure** | "less drastic", "keep the same parts" | A clearly different layout built from the same kinds of parts |
 | **polish** | "just refine", "only fix contrast" | The same screen, finished |
 
 You steer after you see the result, not before:
 
-- "Build concept B instead": reuses the three concepts already written and builds B.
+- "Try a different direction" (optionally "more like X"): a new run that avoids the rejected concept.
 - "Too much, go back a bit": a new run in restructure or polish mode, with your words as limits.
 - "Keep this, but rethink the history table": a new full redesign of just that component.
 
@@ -59,7 +59,7 @@ SKILL.md                  workflow and rules (what Claude follows)
 metrics/groups.json       the 5 scored groups, their weights and members
 metrics/*.md              scoring methods: 5 groups, 37 sub-metrics
 prompts/scorer.md         haiku scorer prompt
-prompts/concepts.md       fable concept prompt (reinvent mode)
+prompts/inventor.md       fable inventor prompt (reinvent mode)
 prompts/improver.md       fable build prompt (all modes)
 scripts/new_iteration.py  creates workspace/<iteration-id>/ and its brief
 scripts/score.py          checks the score files and writes judgement.md
