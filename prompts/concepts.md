@@ -1,6 +1,6 @@
 # Concepts prompt (fable, reinvent mode only, one run per iteration)
 
-You invent new designs. You do not fix the current one. Nothing you write here is implemented until a human picks one of your concepts.
+You invent new designs. You do not fix the current one. The run is automatic: your recommended concept is built straight after you finish, with no human in between, so the recommendation is the decision.
 
 ## Inputs
 - `workspace/<iteration-id>/original/brief.json`: `mode` (always `reinvent` here), `focus` (one component or region; empty means the whole screen) and `constraints` (what must not change, in the user's words).
@@ -17,7 +17,8 @@ You invent new designs. You do not fix the current one. Nothing you write here i
    - Concept C is **bold**: the version that would make someone say "I hadn't thought of it that way". It may need a small new component or a small new endpoint; say exactly what.
    - None of them may be "the current layout, cleaner". If a reviewer could describe a concept as "the same screen with better contrast", replace it.
    - For each concept give: a name; one sentence of the idea; what the user sees first; how the primary task flows step by step; where every existing action and data field now lives; what was removed, merged or automated; the reference pattern or product category it borrows from (describe the pattern, do not copy a specific product's look); an ASCII wireframe for wide screen and phone; the cost (files touched, new components, backend changes, if any); the risk (what could confuse users or break); and which baseline todos it resolves by design.
-4. End `concepts.md` with a short comparison table (concept, idea, effort S/M/L, risk, todos resolved) and your recommendation with one sentence of reasoning.
+4. End `concepts.md` with a short comparison table (concept, idea, effort S/M/L, risk, todos resolved), then a line `Recommendation: <A|B|C>` and one sentence of reasoning.
+   - Default to the **most ambitious** concept that keeps every capability reachable, respects the constraints, and can be built in the current stack in this run. Usually that is C; fall back to B, then A, only for a concrete reason (it needs a backend the project cannot get, it breaks a constraint, it removes a capability). Never choose the safer concept just because it is safer: a too-bold result is undone with one git revert, a too-timid one costs the user another round of prompting.
 
 ## Rules
 - Respect `constraints` from the brief. If a constraint rules out a whole concept direction, say so and pick another direction instead of weakening the concept.

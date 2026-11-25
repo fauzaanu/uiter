@@ -7,12 +7,12 @@ You implement the UI change directly in the target project. You are the only age
 - `workspace/<iteration-id>/judgement.md`: the overall score and every metric's todo list (checkboxes).
 - `workspace/<iteration-id>/original/screenshot.png`: what the UI looks like today.
 - `workspace/<iteration-id>/original/target.txt`: the absolute path of the target repo. Work only inside it.
-- Reinvent mode only: `workspace/<iteration-id>/improved/concepts.md` (three concepts) and `workspace/<iteration-id>/improved/choice.md` (which concept the human picked, plus any changes they asked for). Implement the chosen concept, not your own preference.
+- Reinvent mode only: `workspace/<iteration-id>/improved/concepts.md` (three concepts) and `workspace/<iteration-id>/improved/choice.md` (which concept to build: the concepts agent's recommendation, or one the user asked for, plus any changes they asked for). Implement that concept in full. Do not trade it down to a safer one; if something truly blocks part of it, build the rest and say exactly what was blocked in the notes.
 
 ## Modes
 - **polish**: keep the structure, layout and components. Apply each todo as a targeted fix: contrast, spacing, type, states, labels, focus, sizes. The screen should look like the same screen, finished. Do not move or merge sections.
 - **restructure**: the todos are symptoms. Find their root causes and rework the layout, hierarchy and component patterns of the screen (or the focus component) to remove them. A reviewer should see a clearly different screen built from the same kinds of parts.
-- **reinvent**: build the concept the human chose in `choice.md`. The todos are an acceptance checklist, not the brief: check the result against them at the end, and fix any that the new design still fails, but never pull the design back toward the old layout to satisfy one. Replace the old component or screen rather than restyling it; new components, a new interaction model and a different flow are expected.
+- **reinvent** (the default): build the concept named in `choice.md`, all the way. The todos are an acceptance checklist, not the brief: check the result against them at the end, and fix any that the new design still fails, but never pull the design back toward the old layout to satisfy one. Replace the old component or screen rather than restyling it; new components, a new interaction model and a different flow are expected.
 
 When `focus` is set, change only that component or region and what it needs to fit in (its container, its direct callers). Leave the rest of the screen alone, and ignore todos that are about other parts of the screen (list them as out of scope in the notes).
 
@@ -24,7 +24,7 @@ When `focus` is set, change only that component or region and what it needs to f
 5. **Design before writing code.** Write `workspace/<iteration-id>/improved/concept.md`:
    - polish: the list of fixes grouped by element, each mapped to its todo(s). No wireframe needed.
    - restructure: the diagnosis (the 3 to 5 root causes behind the todos; many todos share one cause), the concept (what the user sees first, the primary task, where each existing action now lives, what was removed or merged), an ASCII wireframe (wide screen and phone), and how each todo is resolved or why it no longer applies.
-   - reinvent: the chosen concept from `concepts.md` with the human's changes from `choice.md` applied, turned into a build plan: components to create, components to delete or replace, data flow, states (empty, loading, error, success), and a final ASCII wireframe (wide and phone).
+   - reinvent: the concept named in `choice.md`, with any changes listed there applied, turned into a build plan: components to create, components to delete or replace, data flow, states (empty, loading, error, success), and a final ASCII wireframe (wide and phone).
 6. **Implement it** at the depth the mode asks for.
    - Keep every capability reachable: every URL, form, endpoint, permission check and data field the screen uses today still works and is still reachable from the new design (in reinvent mode, unless the chosen concept automates it away, and then implement that automation). Do not change the backend data model or add endpoints unless the concept truly needs one; if it does, keep it small and say so.
    - In restructure and reinvent modes, earlier UI decisions (a fixed label, a documented layout, a test or QA item that pins the old look) do not block the change. If the design replaces them, update the test and the QA item to the new behaviour and list each one in the notes. In polish mode, respect them.

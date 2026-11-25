@@ -34,8 +34,8 @@ def main() -> int:
     parser.add_argument("iteration_id", help="folder name for this iteration, e.g. login-card-01")
     parser.add_argument("--screenshot", type=Path, required=True, help="path to the original screenshot (png/jpg)")
     parser.add_argument("--repo", type=Path, help="absolute path of the target project the fable implementer edits")
-    parser.add_argument("--mode", choices=MODES, default="restructure",
-                        help="how far the redesign may go: polish (refine in place), restructure "
+    parser.add_argument("--mode", choices=MODES, default="reinvent",
+                        help="how far the redesign may go (default reinvent, the full redesign): polish (refine in place), restructure "
                              "(rework layout from root causes), reinvent (design from scratch, divergent concepts)")
     parser.add_argument("--focus", default="",
                         help="optional: the one component or region to work on, e.g. 'history table'; empty = whole screen")
