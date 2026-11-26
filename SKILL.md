@@ -1,6 +1,6 @@
 ---
 name: uiter
-description: Score a UI screen from its screenshot against 5 grouped UI review metrics (covering 37 sub-metrics), produce a weighted judgement with actionable todos, then redesign it in the target repo as far as it can go by default (reinvent: one bold concept from an inventor agent, built automatically, no questions), with polish and restructure only as dial-back modes when the user asks for less, and hand the uncommitted branch to a human for review. Each role (scorer, inventor, improver) runs on a configurable model: presets in models.json (default haiku/fable/fable, all-haiku, all-fable, opus-build) or per-role overrides. Use when the user asks to review, critique, score, iteratively improve, redesign, or reimagine a UI screen or component that lives in a real project.
+description: Score a UI screen from its screenshot against 5 grouped UI review metrics (covering 37 sub-metrics), produce a weighted judgement with actionable todos, then redesign it in the target repo as far as it can go by default (reinvent: one bold concept from an inventor agent, built automatically, no questions), with polish and restructure only as dial-back modes when the user asks for less, and hand the uncommitted branch to a human for review. Each role (scorer, inventor, improver) runs on a configurable model: presets in models.json (default haiku/fable/fable, all-fable, opus-build) or per-role overrides. Use when the user asks to review, critique, score, iteratively improve, redesign, or reimagine a UI screen or component that lives in a real project.
 ---
 
 # uiter
@@ -35,11 +35,10 @@ Each role runs on its own model, read from `original/brief.json` (`models`). Alw
 | Preset | scorer | inventor | improver | Use |
 | --- | --- | --- | --- | --- |
 | `default` | haiku | fable | fable | Normal runs. |
-| `all-haiku` | haiku | haiku | haiku | Experiment: cheapest and fastest; compare its result against a default run of the same screen. |
 | `all-fable` | fable | fable | fable | Strongest scoring too, at the highest cost. |
 | `opus-build` | haiku | fable | opus | Fable's idea, built by opus. |
 
-Pick the preset from the user's words ("all haiku", "use opus to build"); otherwise use `default`. Single roles can be overridden on top of any preset (`--inventor opus`). Report the preset and the model per role in the first status line and in the final report, so runs on different models can be compared.
+Pick the preset from the user's words ("all fable", "use opus to build"); otherwise use `default`. Never run the inventor or improver on haiku: an all-haiku run was tried and the result was unacceptable. Haiku is for scoring only. Single roles can be overridden on top of any preset (`--inventor opus`). Report the preset and the model per role in the first status line and in the final report, so runs on different models can be compared.
 
 ## Layout
 

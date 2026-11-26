@@ -33,7 +33,6 @@ Each role takes its own model. Presets are in `models.json`:
 | Preset | scorer | inventor | improver |
 | --- | --- | --- | --- |
 | `default` | haiku | fable | fable |
-| `all-haiku` | haiku | haiku | haiku |
 | `all-fable` | fable | fable | fable |
 | `opus-build` | haiku | fable | opus |
 
@@ -51,7 +50,7 @@ Needs Python 3 and a target project in git.
 
 ```
 /uiter                      with a screenshot attached
-/uiter all haiku            cheapest run
+/uiter use opus to build    swap a role's model
 /uiter the topic field      one component only
 ```
 

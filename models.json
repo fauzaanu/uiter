@@ -6,10 +6,29 @@
   },
   "default_preset": "default",
   "presets": {
-    "default": { "scorer": "haiku", "inventor": "fable", "improver": "fable" },
-    "all-haiku": { "scorer": "haiku", "inventor": "haiku", "improver": "haiku" },
-    "all-fable": { "scorer": "fable", "inventor": "fable", "improver": "fable" },
-    "opus-build": { "scorer": "haiku", "inventor": "fable", "improver": "opus" }
+    "default": {
+      "scorer": "haiku",
+      "inventor": "fable",
+      "improver": "fable"
+    },
+    "all-fable": {
+      "scorer": "fable",
+      "inventor": "fable",
+      "improver": "fable"
+    },
+    "opus-build": {
+      "scorer": "haiku",
+      "inventor": "fable",
+      "improver": "opus"
+    }
   },
-  "models": ["haiku", "sonnet", "opus", "fable"]
+  "models": [
+    "haiku",
+    "sonnet",
+    "opus",
+    "fable"
+  ],
+  "haiku_roles": [
+    "scorer"
+  ]
 }

@@ -44,6 +44,10 @@ def resolve_models(preset, overrides):
             if model not in config["models"]:
                 raise ValueError(f"unknown model '{model}' for --{role}; choose from {', '.join(config['models'])}")
             models[role] = model
+    allowed = config.get("haiku_roles", list(ROLES))
+    for role, model in models.items():
+        if model == "haiku" and role not in allowed:
+            raise ValueError(f"haiku is not allowed for the {role} role (only: {', '.join(allowed)})")
     return models, preset
 
 
@@ -60,7 +64,7 @@ def main() -> int:
     parser.add_argument("--constraints", default="",
                         help="optional: what must not change or is off limits, in the user's words")
     parser.add_argument("--models", default="",
-                        help="model preset from models.json (default, all-haiku, all-fable, opus-build)")
+                        help="model preset from models.json (default, all-fable, opus-build)")
     for role in ROLES:
         parser.add_argument(f"--{role}", default="", help=f"model for the {role} role; overrides the preset")
     parser.add_argument("--html", type=Path, help="deprecated: legacy isolated HTML, kept for old invocations")
